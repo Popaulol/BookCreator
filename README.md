@@ -13,5 +13,12 @@ This does depend on your system Setup but
 pip install PyPDF2
 ```
 *Should* work on Winshit, CrackOS and some Linux Distros.
-If this doesn't work on your system, you can probably figure out out to use Pip on your system.
+If this doesn't work on your system, you can probably figure out how to install soemthing from [PyPI](https://pypi.org/) on your system yourself.
 
+
+# Running
+```
+python3 main.py
+```
+
+If that doesn't work you system, go figure it out yourself.
