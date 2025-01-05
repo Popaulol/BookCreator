@@ -4,6 +4,10 @@ This thing converts a PDF File of A4 Pages to one that can be used with double s
 
 The UI, whilst horrid, should be self explanitory.
 
+If the Input PDF isn't A4, your results may vary.
+A PDF that only contains DIN A Paper sizes *should* work with the Output file having the same Page size as the Input File but i can't gurantee that.
+Any other Paper formats and it's most likely gonna break horribly. 
+
 ## Setup
 1. Install [Python](https://www.python.org/)
 2. Install PyPDF2:
