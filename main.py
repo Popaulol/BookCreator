@@ -7,6 +7,7 @@ from PyPDF2 import PdfReader, PdfWriter, Transformation
 import tkinter as tk
 from tkinter import ttk
 
+
 def make_writer_from_reader(reader):
     ret = PdfWriter()
     for page in reader.pages:
@@ -25,10 +26,12 @@ def align_length(pdf_file, mod=4, insert_position=-1):
         else:
             pdf_file.insert_blank_page(index=insert_position)
 
+
 def arrange_pages_for_print(pdf_file):
     assert len(pdf_file.pages) % 4 == 0, "The number of Pages must be a multiple of 4"
 
     number_of_pages = len(pdf_file.pages)
+
     def translate_page(page):
         if page >= 0:
             return page
@@ -82,20 +85,30 @@ def combine_pages(pdf_file):
 
     return ret
 
+
 def main():
     def open_input_file():
-        filename = filedialog.askopenfilename(title="Select a PDF file",
-                                              filetypes=(("PDF files", "*.pdf"), ("All Files", "*.*")))
+        filename = filedialog.askopenfilename(
+            title="Select a PDF file",
+            filetypes=(("PDF files", "*.pdf"), ("All Files", "*.*")),
+        )
         input_file_path.delete(0, tk.END)
         input_file_path.insert(0, filename)
 
     def open_output_file():
-        filename = filedialog.asksaveasfilename(title="How should the output File be called", initialfile=f"{input_file_path.get()}-book.pdf", defaultextension=".pdf", filetypes=(("PDF files", "*.pdf"), ("All Files", "*.*")))
+        filename = filedialog.asksaveasfilename(
+            title="How should the output File be called",
+            initialfile=f"{input_file_path.get()}-book.pdf",
+            defaultextension=".pdf",
+            filetypes=(("PDF files", "*.pdf"), ("All Files", "*.*")),
+        )
 
         path = pathlib.Path(filename)
         if path.is_file():
-            answer = tk.messagebox.askyesno(title="File Override Confirmation",
-                                            message=f"Do you really want to override `{path.name}`?")
+            answer = tk.messagebox.askyesno(
+                title="File Override Confirmation",
+                message=f"Do you really want to override `{path.name}`?",
+            )
         else:
             answer = True
 
@@ -111,7 +124,6 @@ def main():
         output_file.write(output_file_path.get())
 
         tk.messagebox.showinfo(message="Finished!")
-
 
     root = tk.Tk()
 
@@ -131,12 +143,19 @@ def main():
 
     # Settings
     leave_last_page = tk.BooleanVar()
-    ttk.Checkbutton(root, text="Last Page on Back", onvalue=True, offvalue=False, variable=leave_last_page).grid(row=2, column=1)
+    ttk.Checkbutton(
+        root,
+        text="Last Page on Back",
+        onvalue=True,
+        offvalue=False,
+        variable=leave_last_page,
+    ).grid(row=2, column=1)
 
     # Run Button
     tk.Button(root, text="Go", command=run).grid(row=3, column=0, columnspan=3)
 
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
